@@ -1,119 +1,49 @@
-# Automated Real Estate Underwriting Engine (UK-focused)
+# Automated Real Estate Underwriting Engine (UK)
 
-Offline-first Python project that ingests UK property data and produces complete leveraged underwriting outputs in both machine-readable JSON and a human-friendly Streamlit dashboard.
+This is an offline-first Python underwriting project for UK property deals. It reads local datasets (Land Registry transactions, rent comps, a rates curve, and mock listing data), stores what it needs in SQLite, then produces a full leveraged underwriting output. Results can be exported as clean JSON for machines, and also viewed in a Streamlit dashboard for humans.
 
-## Highlights
+The code is set up around small adapters so the data sources are swappable. Land Registry and rent comps are ingested from CSV into a SQLite database using SQLAlchemy, listings are loaded through a `ListingsAdapter` interface (defaulting to `MockListingsAdapter` backed by a local JSON file), and rates come from a CSV with a hard-coded fallback curve if nothing is provided. The database layer auto-creates tables on first run.
 
-- Modular adapters for ingestion:
-  - Land Registry CSV ingestion into SQLite
-  - `ListingsAdapter` interface with:
-    - `MockListingsAdapter` (local JSON)
-    - `PlaceholderListingsAPIAdapter` (explicit integration placeholder)
-  - Rates adapter from CSV with hard-coded fallback curve
-- SQLAlchemy + SQLite data layer with auto-create tables
-- Underwriting engine:
-  - Monthly + annual cash flow projections
-  - Interest-only and amortizing debt schedules
-  - Levered cash flow metrics: IRR, NPV, Equity Multiple, Cash-on-Cash, DSCR, LTV
-- Feature engineering:
-  - Price per sqft
-  - Postcode transaction averages/trend
-  - Yield estimate + yield spread versus reference rate
-  - Rule-based vacancy heuristics by property type + postcode prefix
-- Scenario analysis:
-  - Deterministic stresses (rates/rent/exit yield)
-  - Monte Carlo simulation (IRR/NPV distributions + downside probabilities)
-- Streamlit dashboard with exports:
-  - JSON export
-  - CSV export for annual cash flow and debt schedule
+Underwriting is done with monthly and annual projections, supporting both interest-only and amortising debt schedules. It computes the usual levered metrics (IRR, NPV, equity multiple, cash-on-cash, DSCR, LTV) and includes a handful of practical feature calculations like price per sqft, postcode-level transaction averages and trends, a basic yield estimate with yield spread versus the reference rate, and rule-based vacancy heuristics keyed off property type and postcode prefix.
 
-## Repository Structure
+On top of the base case there is scenario support. You can run deterministic stresses (rates, rent, exit yield) and a Monte Carlo simulation that produces IRR/NPV distributions plus downside probabilities. The Streamlit app also lets you export JSON as well as CSVs for the annual cash flow and the debt schedule.
 
-```
+Repository layout:
 .
 ├── app/
-│   └── main.py
+│ └── main.py
 ├── data/
-│   ├── land_registry_sample.csv
-│   ├── listings_sample.json
-│   ├── rates_sample.csv
-│   └── rent_comps_sample.csv
+│ ├── land_registry_sample.csv
+│ ├── listings_sample.json
+│ ├── rates_sample.csv
+│ └── rent_comps_sample.csv
 ├── src/
-│   ├── adapters/
-│   ├── db/
-│   ├── features/
-│   ├── scenarios/
-│   ├── underwriting/
-│   └── utils/
+│ ├── adapters/
+│ ├── db/
+│ ├── features/
+│ ├── scenarios/
+│ ├── underwriting/
+│ └── utils/
 ├── tests/
 ├── requirements.txt
 └── README.md
-```
 
-## Setup
 
-1. Create and activate a virtual environment (Python 3.11+):
+Setup is straightforward. Create a venv (Python 3.11+), install requirements, run tests, then start Streamlit:
 
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-```
-
-2. Install dependencies:
-
-```bash
 pip install -r requirements.txt
-```
-
-3. Run tests:
-
-```bash
 pytest -q
-```
-
-4. Launch Streamlit:
-
-```bash
 streamlit run app/main.py
-```
 
-The app bootstraps the SQLite DB and sample data automatically on first run.
+Data sources in the default demo are:
 
-## Data & Ingestion
+data/listings_sample.json via MockListingsAdapter
 
-- Listings: `data/listings_sample.json` loaded via `MockListingsAdapter`
-- Transactions: `data/land_registry_sample.csv` loaded via `LandRegistryCSVIngestor`
-- Rent comps: `data/rent_comps_sample.csv` loaded via `RentCompsCSVIngestor`
-- Rates: `data/rates_sample.csv` loaded via `RatesSeriesAdapter`
+data/land_registry_sample.csv via LandRegistryCSVIngestor
 
-You can also ingest alternative local CSV paths from the Streamlit sidebar.
+data/rent_comps_sample.csv via RentCompsCSVIngestor
 
-## Core Assumptions
-
-- Stamp duty defaults to a simplified UK residential progressive band model when not manually provided.
-- Debt supports:
-  - Amortizing annuity schedule
-  - Interest-only coupon with balloon repayment at term
-- Exit valuation supports either:
-  - Exit cap rate on annualized NOI
-  - NOI multiple
-- Monte Carlo variables sampled with clipped normal distributions:
-  - Rent growth
-  - Vacancy
-  - Exit cap rate
-  - Interest rate
-
-All assumptions are explicit and configurable in code and UI.
-
-## Testing Coverage
-
-Included unit tests validate:
-
-- Debt schedule correctness
-- Cash flow and NOI math
-- IRR/NPV against known toy examples
-- Deterministic scenario integrity and Monte Carlo shape/summary outputs
-
-## Compliance Note
-
-This project intentionally does **not** scrape Rightmove/Zoopla. It uses local mock data and a clear placeholder adapter for future official API integrations.
+data/rates_sample.csv via RatesSeriesAdapter
