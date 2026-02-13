@@ -1,0 +1,21 @@
+postcode,price_paid,date,property_type,new_build,tenure
+E14 9AB,450000,2021-03-15,Flat,N,Leasehold
+E14 9AB,470000,2022-07-11,Flat,N,Leasehold
+E14 9AB,495000,2023-10-03,Flat,N,Leasehold
+E14 9AB,510000,2024-08-22,Flat,N,Leasehold
+M14 6PL,238000,2020-02-01,Terraced,N,Freehold
+M14 6PL,248000,2021-09-19,Terraced,N,Freehold
+M14 6PL,258000,2023-03-09,Terraced,N,Freehold
+M14 6PL,270000,2024-11-04,Terraced,N,Freehold
+B15 2TT,285000,2020-05-14,Semi-Detached,N,Freehold
+B15 2TT,305000,2022-01-21,Semi-Detached,N,Freehold
+B15 2TT,335000,2023-12-18,Semi-Detached,N,Freehold
+B15 2TT,350000,2025-01-10,Semi-Detached,N,Freehold
+L3 4AE,175000,2021-04-01,Apartment,N,Leasehold
+L3 4AE,188000,2022-10-07,Apartment,N,Leasehold
+L3 4AE,198000,2023-08-30,Apartment,N,Leasehold
+L3 4AE,205000,2024-12-15,Apartment,N,Leasehold
+BS8 1TL,360000,2020-07-22,House,N,Freehold
+BS8 1TL,385000,2022-04-05,House,N,Freehold
+BS8 1TL,415000,2023-09-13,House,N,Freehold
+BS8 1TL,430000,2024-11-25,House,N,Freehold

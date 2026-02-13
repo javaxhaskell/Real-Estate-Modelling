@@ -1,0 +1,12 @@
+postcode,monthly_rent,bedrooms,property_type,date,source
+E14 9AB,2450,2,flat,2025-05-01,local_mock
+E14 9AB,2550,2,flat,2025-08-01,local_mock
+E14 9AB,2650,2,flat,2025-11-01,local_mock
+M14 6PL,1450,3,terraced,2025-06-01,local_mock
+M14 6PL,1525,3,terraced,2025-09-01,local_mock
+B15 2TT,1750,3,semi-detached,2025-04-01,local_mock
+B15 2TT,1825,3,semi-detached,2025-10-01,local_mock
+L3 4AE,1250,2,apartment,2025-07-01,local_mock
+L3 4AE,1300,2,apartment,2025-11-01,local_mock
+BS8 1TL,2050,3,house,2025-03-01,local_mock
+BS8 1TL,2150,3,house,2025-10-01,local_mock

@@ -1,0 +1,67 @@
+[
+  {
+    "address": "12 River Walk, London",
+    "postcode": "E14 9AB",
+    "lat": 51.5033,
+    "lon": -0.0196,
+    "asking_price": 525000,
+    "bedrooms": 2,
+    "bathrooms": 2,
+    "property_type": "flat",
+    "floor_area_sqft": 780,
+    "listing_date": "2025-10-18",
+    "source": "mock_rightmove"
+  },
+  {
+    "address": "8 Meadow Road, Manchester",
+    "postcode": "M14 6PL",
+    "lat": 53.4508,
+    "lon": -2.2195,
+    "asking_price": 295000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "property_type": "terraced",
+    "floor_area_sqft": 1040,
+    "listing_date": "2025-11-05",
+    "source": "mock_zoopla"
+  },
+  {
+    "address": "22 Park Lane, Birmingham",
+    "postcode": "B15 2TT",
+    "lat": 52.4689,
+    "lon": -1.9214,
+    "asking_price": 365000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "property_type": "semi-detached",
+    "floor_area_sqft": 1210,
+    "listing_date": "2025-09-30",
+    "source": "mock_rightmove"
+  },
+  {
+    "address": "4 Dock Street, Liverpool",
+    "postcode": "L3 4AE",
+    "lat": 53.4084,
+    "lon": -2.9916,
+    "asking_price": 215000,
+    "bedrooms": 2,
+    "bathrooms": 1,
+    "property_type": "apartment",
+    "floor_area_sqft": 690,
+    "listing_date": "2025-12-01",
+    "source": "mock_zoopla"
+  },
+  {
+    "address": "9 Oak Gardens, Bristol",
+    "postcode": "BS8 1TL",
+    "lat": 51.4584,
+    "lon": -2.6119,
+    "asking_price": 440000,
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "property_type": "house",
+    "floor_area_sqft": 1125,
+    "listing_date": "2025-11-12",
+    "source": "mock_rightmove"
+  }
+]
